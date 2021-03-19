@@ -1,31 +1,28 @@
 // import functions and grab DOM elements
-const addInput1 = document.getElementById('add-input-1');
-const addInput2 = document.getElementById('add-input-2');
+import { divide } from './utils.js';
+import { handleAddClick, handleMultiplyClick, handleSubtractClick } from './handlers.js';
 const addButton = document.getElementById('add-button');
-const addAnswer = document.getElementById('add-answer');
-
-// initialize state
+const subtractButton = document.getElementById('subtract-button');
 
 // set event listeners to update state and DOM
-addButton.addEventListener('click', () => {
-    // - What happens when they click the button?
-    // - We need to get the values from the inputs
-    //     - How? `inputElement.value`
-    const value1 = addInput1.valueAsNumber;
-    const value2 = addInput2.valueAsNumber;
+addButton.addEventListener('click', handleAddClick);
+subtractButton.addEventListener('click', handleSubtractClick);
 
-    //     - Validate: `console.log()` the input values
-    console.log(value1, value2);
 
-    // - We add these numbers together
-    //     - How? `const sum = Number(inputElement.value) + Number(otherInputElement.value)`
-    const sum = value1 + value2;
-    //     - Validate: `console.log()` the sum
+const multiplyButton = document.getElementById('multiply-button');
 
-    console.log(sum);
-    // - Inject the sum into the div so the user can see it
-    //     - How? `myDiv.textContent = sum`
-    addAnswer.textContent = sum;
-    //     - Validate: Go look at the site and do the stuff
+multiplyButton.addEventListener('click', handleMultiplyClick);
 
+const divideInput1 = document.getElementById('divide-input-1');
+const divideInput2 = document.getElementById('divide-input-2');
+const divideButton = document.getElementById('divide-button');
+const divideAnswer = document.getElementById('divide-answer');
+
+
+divideButton.addEventListener('click', () => {
+    const value1 = Number(divideInput1.value);
+    const value2 = Number(divideInput2.value);
+    const quotient = divide(value1, value2);
+
+    divideAnswer.textContent = quotient;
 });
